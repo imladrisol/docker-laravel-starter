@@ -11,7 +11,7 @@ clone project
 *********
 change .env:
 
-DB_HOST=db
+DB_HOST=exam
 
 DB_PASSWORD=test
 **********************
@@ -31,7 +31,7 @@ DB_PASSWORD=test
 
 >show databases;
 
->GRANT ALL ON laravel.* TO 'root'@'%' IDENTIFIED BY 'test';
+>GRANT ALL ON exam.* TO 'root'@'%' IDENTIFIED BY 'test';
 
 >FLUSH PRIVILEGES;
 

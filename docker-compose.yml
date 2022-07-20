@@ -13,10 +13,12 @@ services:
     environment:
       SERVICE_NAME: app
       SERVICE_TAGS: dev
+      PHP_IDE_CONFIG: "serverName=Magetwo"
     working_dir: /var/www
     volumes:
       - ./:/var/www
       - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+      - ./php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
     networks:
       - app-network
 
@@ -44,7 +46,7 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: laravel
+      MYSQL_DATABASE: exam
       MYSQL_ROOT_PASSWORD: test
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
@@ -53,6 +55,26 @@ services:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
     networks:
       - app-network
+  smtp:
+      image: mailhog/mailhog
+      container_name: docker-workspace-smtp
+      logging:
+          driver: 'none'
+      ports:
+          - "8003:1025"
+          - "8100:8025"
+      networks:
+          - app-network
+  redis:
+      image: redis:alpine
+      container_name: myapp-redis
+      command: redis-server --appendonly yes --requirepass "${REDIS_PASSWORD}"
+      volumes:
+          - ./data/redis:/data
+      ports:
+          - "6379:6379"
+      networks:
+          - app-network
 
 #Docker Networks
 networks:
