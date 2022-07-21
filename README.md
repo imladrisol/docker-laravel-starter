@@ -45,5 +45,7 @@ DB_PASSWORD=test
 
 >docker-compose exec app php artisan tinker
 
+> npm install && npm run dev
+
 \DB::table('migrations')->get();
 </p>
