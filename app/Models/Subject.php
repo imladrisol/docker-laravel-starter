@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Subject extends Model
 {
     use HasFactory;
-    protected $table = 'categories';
     protected $guarded = [];
-    public const CATEGORIES_PER_PAGE = 5;
+    public const SUBJECTS_PER_PAGE = 5;
 
-    public function subjects(){
-        return $this->hasMany('App\Models\Subject');
+    public function category(){
+        return $this->belongsTo('App\Models\Category');
     }
 
     /**

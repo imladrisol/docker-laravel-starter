@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -18,8 +19,9 @@ class DatabaseSeeder extends Seeder
         User::factory()
             ->count(2)
             ->create();
-
-        Category::factory()
+        Subject::factory()
+            ->has(Category::factory()
+                ->count(10))
             ->count(10)
             ->create();
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SubjectController;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -24,5 +25,6 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['web'])->group(function () {
     Route::resource('categories', CategoryController::class);
+    Route::resource('subjects', SubjectController::class);
 });
 
